@@ -24,8 +24,14 @@ public class Inline_Equipment {
 
 	}
 
-	public void Action_Stop(){
-
+	public void Action_Stop(){		//’â~’†‚Ì“®ì
+		while(true){
+			try{
+				Operation_part.StartButton.Pushdown();
+			}catch(ArithmeticException err){
+				//‰^“]ŠJn
+			}
+		}
 	}
 
 	public void Action_Stop_Complete(){

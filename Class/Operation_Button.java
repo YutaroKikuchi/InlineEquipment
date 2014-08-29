@@ -1,5 +1,6 @@
 package Class;
 
+import lejos.hardware.Button;
 
 /**
  * @author yusan
@@ -10,20 +11,28 @@ public class Operation_Button {
 
 	public Operation_Part Operation_Part;
 
-	public Operation_Button(){
-
+	String SwitchMode;
+	
+	public Operation_Button(String mode){
+		SwitchMode = mode;
 	}
 
 	public void finalize() throws Throwable {
 
 	}
 
-	public boolean Pushdown(){
-		return false;
+	public void Pushdown(){
+		if((SwitchMode=="stop" && Button.ENTER.isDown()==true)||(Button.DOWN.isDown()==true && SwitchMode=="start")){
+			Pushdown_Event();
+		}
 	}
 
 	public void Pushdown_Event(){
-
+		try{
+			System.out.println(10/0);
+		}catch(ArithmeticException err){
+			throw err;
+		}
 	}
 
 }
