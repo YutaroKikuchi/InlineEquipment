@@ -1,5 +1,7 @@
 package Class;
 
+import Constants.IEConstants;
+
 
 /**
  * @author yusan
@@ -10,8 +12,14 @@ public class Moving_Stage {
 
 	public Area Area;
 
+	private boolean LockMov;	//ベルトコンベアロック
+	private int angle;			//モータの現在の角度
+	
 	public Moving_Stage(){
-
+		LockMov = false;
+		angle = 0;
+		IEConstants.BAND.resetTachoCount();
+		IEConstants.BAND.rotateTo(0);
 	}
 
 	public void finalize() throws Throwable {
@@ -23,19 +31,23 @@ public class Moving_Stage {
 	}
 
 	public void Lock_Moving(){
-
+		LockMov = false;
 	}
 
 	public void Moving(){
-
+		if(LockMov==true){
+			angle += IEConstants.ROT;
+			IEConstants.BAND.setSpeed(IEConstants.SPD);
+			IEConstants.BAND.rotateTo(angle);
+		}
 	}
 
 	public void Take_Sample(){
-
+		
 	}
 
 	public void Unlock_Moving(){
-
+		LockMov = true;
 	}
 
 }
