@@ -20,8 +20,9 @@ private IEConstants(){
 	public static EV3ColorSensor CLSEN = new EV3ColorSensor(SensorPort.S3);	//処理ユニット用カラーセンサ
 	public static SensorMode COL = CLSEN.getMode(2);						//処理ユニット用カラーセンサ
 	public static EV3UltrasonicSensor SonicSensor = new EV3UltrasonicSensor(SensorPort.S4);	//導入エリア用超音波センサ
-	SensorMode SNC = SonicSensor.getMode(0);	//超音波センサモード
+	public static SensorMode SNC = SonicSensor.getMode(0);	//超音波センサモード
 	
 	public static int ROT = 30;		//ベルトコンベア用モータを動かす角度
 	public static int SPD = 200;	//ベルトコンベア用モータを動かす速度
+	public static float BSC = 0;	//超音波センサ用基準値
 }
