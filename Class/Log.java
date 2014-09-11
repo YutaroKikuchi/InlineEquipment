@@ -8,16 +8,33 @@ package Class;
  */
 public class Log {
 
-	private int color = 0;
-	private boolean Take_After = false;
+	private String colorname;
+	private boolean Take_After;
 	public Sample Treat_Sample;
 
 	public Log(){
-
+		colorname="•s–¾";
+		Take_After=false;
 	}
 
 	public void finalize() throws Throwable {
 
+	}
+	
+	public void setColor(String Color){
+		colorname=Color;
+	}
+	
+	public void setState(boolean TreatSt){
+		Take_After=TreatSt;
+	}
+	
+	public String getColor(){
+		return colorname;
+	}
+	
+	public boolean returnTake_After(){
+		return Take_After;
 	}
 
 }

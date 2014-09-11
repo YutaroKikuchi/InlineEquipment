@@ -9,13 +9,19 @@ package Class;
 public class Sample {
 
 	private int ID;
+	public Log Treat_Log;
 
-	public Sample(){
-
+	public Sample(int Number){
+		Treat_Log = new Log();
+		ID = Number;
 	}
 
 	public void finalize() throws Throwable {
 
+	}
+	
+	public int getID(){
+		return ID;
 	}
 
 }
