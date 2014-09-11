@@ -8,7 +8,7 @@ package Class;
  */
 public class Treating_Part {
 
-	public TreatingUnit TreatingUnit;
+	public TreatingUnit TreatingUnit = new TreatingUnit();
 
 	public Treating_Part(){
 
@@ -18,8 +18,14 @@ public class Treating_Part {
 
 	}
 
-	public boolean Treating(){
-		return false;
+	public boolean Treating(int colorID){
+		TreatingUnit.Treating();
+		colorID=TreatingUnit.getColorNumber();
+		if(colorID==5){
+			return false;
+		}else{
+			return true;
+		}
 	}
 
 }
