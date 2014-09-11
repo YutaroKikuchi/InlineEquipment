@@ -1,5 +1,7 @@
 package Class;
 
+import Constants.IEConstants;
+
 
 /**
  * @author yusan
@@ -9,14 +11,12 @@ package Class;
 public class Before_Equipment {
 
 	public Before_Equipment(){
-
+		IEConstants.BEF.resetTachoCount();
+		IEConstants.BEF.rotateTo(0);
+		IEConstants.BEF.setSpeed(IEConstants.BEF_SPD);
 	}
 
 	public void finalize() throws Throwable {
-
-	}
-
-	public void Check_Sample(){
 
 	}
 
@@ -25,11 +25,12 @@ public class Before_Equipment {
 	}
 
 	public void Give_Sample(){
-
+		IEConstants.BEF.rotateTo(IEConstants.BEF_ROT);
+		IEConstants.BEF.rotateTo(0);
 	}
 
-	public Start_Giving(){
-
+	public void Start_Giving(){
+		
 	}
 
 }
