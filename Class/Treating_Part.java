@@ -18,14 +18,7 @@ public class Treating_Part {
 
 	}
 
-	public boolean Treating(int colorID){
-		TreatingUnit.Treating();
-		colorID=TreatingUnit.getColorNumber();
-		if(colorID==5){
-			return false;
-		}else{
-			return true;
-		}
+	public void Treating(){
 	}
 
 }
