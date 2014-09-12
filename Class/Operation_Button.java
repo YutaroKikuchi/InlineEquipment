@@ -22,7 +22,7 @@ public class Operation_Button {
 	}
 
 	public void Pushdown(){
-		if((SwitchMode=="stop" && Button.ENTER.isDown()==true)||(Button.DOWN.isDown()==true && SwitchMode=="start")){
+		if((SwitchMode=="stop" && Button.DOWN.isDown()==true)||(Button.ENTER.isDown()==true && SwitchMode=="start")){
 			Pushdown_Event();
 		}
 	}

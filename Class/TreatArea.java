@@ -28,7 +28,7 @@ public class TreatArea extends Area {
 		try{
 			fw = new FileWriter(IEConstants.PASS, false); 
 			pw = new PrintWriter(new BufferedWriter(fw));
-			pw.print("ID,色,処理状況\n");
+			pw.print(IEConstants.LOG);
 			pw.close();
 		}catch (IOException ex){
 			 ex.printStackTrace();
@@ -47,29 +47,29 @@ public class TreatArea extends Area {
 		TreatingPart.TreatingUnit.Treating(colorvalue);
 		
 		if(colorvalue[0]<=200 && colorvalue[1]<=200 && colorvalue[2]<=200){
-			colorname = "黒";	//黒と判定
+			colorname = IEConstants.BLK;	//黒と判定
 		}else if(colorvalue[0]<=200 && colorvalue[1]<=200 && colorvalue[2]>200){
-			colorname = "青";	//青と判定
+			colorname = IEConstants.BLUE;	//青と判定
 		}else if(colorvalue[0]<=200 && colorvalue[1]>200 && colorvalue[2]<=200){
-			colorname = "緑";	//緑と判定
+			colorname = IEConstants.GRN;	//緑と判定
 		}else if(colorvalue[0]>200 && colorvalue[1]<=200 && colorvalue[2]<=200){
-			colorname = "赤";	//赤と判定
+			colorname = IEConstants.RED;	//赤と判定
 		}else if(colorvalue[0]>200 && colorvalue[1]>200 && colorvalue[2]<=200){
-			colorname = "黄";	//黄と判定
+			colorname = IEConstants.YLW;	//黄と判定
 		}else{
-			colorname = "不明";	//不明と判定
+			colorname = IEConstants.UDF;	//不明と判定
 		}
 		
-		if(colorname!="不明"){									//処理状況を記録 色が不明な場合は処理していないと記録
+		if(colorname!=IEConstants.UDF){									//処理状況を記録 色が不明な場合は処理していないと記録
 			super.Area_Sample.Treat_Log.setState(true);
 		}
 		
 		super.Area_Sample.Treat_Log.setColor(colorname);
 
-		if(colorname != "不明"){
-			csvString = (currentNumber+1) + "," + colorname +"," + "処理完了";
+		if(colorname != IEConstants.UDF){
+			csvString = (currentNumber+1) + "," + colorname +"," + IEConstants.COMP;
 		}else{
-			csvString = (currentNumber+1) + "," + colorname +"," + "処理未完了";
+			csvString = (currentNumber+1) + "," + colorname +"," + IEConstants.UNCOMP;
 		}
 		addCSV(csvString);
 	}

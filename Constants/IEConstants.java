@@ -44,4 +44,8 @@ private IEConstants(){
 	public static String BLK = "黒";
 	public static String GRN = "緑";
 	public static String UDF = "不明";
+	
+	public static String COMP = "処理完了";		//ログに示す内容
+	public static String UNCOMP = "処理未完了";
+	public static String LOG = "ID,色,処理状況\n";
 }
