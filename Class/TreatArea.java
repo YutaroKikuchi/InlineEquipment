@@ -17,7 +17,6 @@ public class TreatArea extends Area {
 
 	public Moving_Stage Moving_Stage;
 	public Treating_Part TreatingPart;
-	public Sample TreatedSample;
 	private FileWriter fw;
 	private PrintWriter pw;
 
@@ -45,8 +44,6 @@ public class TreatArea extends Area {
 		float colorvalue[] = new float[IEConstants.COL.sampleSize()];
 		String csvString;
 		
-		TreatedSample = new Sample(currentNumber+1);
-		
 		TreatingPart.TreatingUnit.Treating(colorvalue);
 		
 		if(colorvalue[0]<=200 && colorvalue[1]<=200 && colorvalue[2]<=200){
@@ -64,17 +61,16 @@ public class TreatArea extends Area {
 		}
 		
 		if(colorname!="不明"){									//処理状況を記録 色が不明な場合は処理していないと記録
-			TreatedSample.Treat_Log.setState(true);
+			super.Area_Sample.Treat_Log.setState(true);
 		}
 		
-		TreatedSample.Treat_Log.setColor(colorname);
+		super.Area_Sample.Treat_Log.setColor(colorname);
 
 		if(colorname != "不明"){
 			csvString = (currentNumber+1) + "," + colorname +"," + "処理完了";
 		}else{
 			csvString = (currentNumber+1) + "," + colorname +"," + "処理未完了";
 		}
-		
 		addCSV(csvString);
 	}
 	

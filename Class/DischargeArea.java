@@ -11,6 +11,8 @@ public class DischargeArea extends Area{
 
 	public Moving_Stage Moving_Stage;
 
+	String[] colors = {IEConstants.UDF,IEConstants.UDF};
+	
 	public DischargeArea(){
 		IEConstants.DIS.resetTachoCount();
 		IEConstants.DIS.rotateTo(0);
@@ -21,11 +23,28 @@ public class DischargeArea extends Area{
 		super.finalize();
 	}
 
-	public void Tern_Point(boolean scolor){
+	private void Tern_Point(boolean scolor){
 		if(scolor == true){
 			IEConstants.DIS.rotateTo(IEConstants.DIS_ROT);
 		}else{
 			IEConstants.DIS.rotateTo(IEConstants.DIS_ROT*-1);
+		}
+	}
+	
+	public void setColor(String in){
+		colors[2]=colors[1];
+		colors[1]=in;
+	}
+	
+	public void Treating(){
+		if(colors[2]!=IEConstants.UDF){
+			if(colors[2]==IEConstants.TGT){
+				IEConstants.DIS.rotateTo(IEConstants.DIS_ROT);
+			}else{
+				IEConstants.DIS.rotateTo(IEConstants.DIS_ROT*-1);
+			}
+		}else{
+			IEConstants.DIS.rotateTo(0);
 		}
 	}
 }

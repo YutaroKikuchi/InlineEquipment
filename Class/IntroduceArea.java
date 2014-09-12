@@ -1,12 +1,11 @@
 package Class;
 
-
 /**
  * @author yusan
  * @version 1.0
  * @created 2014/08/29 21:16:57
  */
-public class IntroduceArea extends Area エリア {
+public class IntroduceArea extends Area {
 
 	public Moving_Stage Moving_Stage;
 	public Before_Equipment BeforeEquipment;
@@ -20,11 +19,11 @@ public class IntroduceArea extends Area エリア {
 		super.finalize();
 	}
 
-	public void Tell_Sample(){
-
+	public boolean Tell_Sample(){
+		return IntroduceSensor.Get_Status();
 	}
 
-	public Treat_Sample(){
+	public void Treat_Sample(){
 
 	}
 

@@ -22,7 +22,7 @@ public class Area {
 
 	}
 
-	public Take_Sample(){
+	public void Take_Sample(){
 
 	}
 
