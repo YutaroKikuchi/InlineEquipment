@@ -22,14 +22,6 @@ public class DischargeArea extends Area{
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
-
-	private void Tern_Point(boolean scolor){
-		if(scolor == true){
-			IEConstants.DIS.rotateTo(IEConstants.DIS_ROT);
-		}else{
-			IEConstants.DIS.rotateTo(IEConstants.DIS_ROT*-1);
-		}
-	}
 	
 	public void setColor(String in){
 		colors[2]=colors[1];

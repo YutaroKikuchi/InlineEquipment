@@ -11,6 +11,9 @@ import Constants.IEConstants;
 public class Moving_Stage {
 
 	public Area Area;
+	public IntroduceArea IntroArea;
+	public TreatArea TreArea;
+	public DischargeArea DisArea;
 
 	private boolean LockMov;	//ベルトコンベアロック
 	private int angle;			//モータの現在の角度
@@ -18,6 +21,9 @@ public class Moving_Stage {
 	public Moving_Stage(){
 		LockMov = false;
 		angle = 0;
+		IntroArea = new IntroduceArea();
+		TreArea = new TreatArea();
+		DisArea = new DischargeArea();
 		IEConstants.BAND.resetTachoCount();
 		IEConstants.BAND.rotateTo(0);
 	}
