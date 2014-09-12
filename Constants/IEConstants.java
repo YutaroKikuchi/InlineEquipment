@@ -24,9 +24,16 @@ private IEConstants(){
 	
 	public static int ROT = 30;		//ベルトコンベア用モータを動かす角度
 	public static int SPD = 200;	//ベルトコンベア用モータを動かす速度
+	
 	public static float BSC = 0;	//超音波センサ用基準値
+	
 	public static int BEF_ROT = 30;	//前処理装置用モータを動かす角度
 	public static int BEF_SPD = 200;//前処理装置用モータを動かす速度
+	
+	public static int DIS_ROT = 22;	//排出勝利用モータを動かす角度
+	public static int DIS_SPD = 200;//排出処理用モータを動かす速度
+
 	public static int SAM = 100;	//扱う試料の最大数
+	
 	public static String PASS = "なんか";	//処理ログを補完するディレクトリパス
 }
