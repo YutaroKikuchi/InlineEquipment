@@ -11,7 +11,7 @@ public class Sensor {
 	
 	private float value[] = new float[IEConstants.SNC.sampleSize()];
 	
-	public Sensor(float basic){
+	public Sensor(){
 	}
 
 	public void finalize() throws Throwable {
