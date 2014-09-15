@@ -1,5 +1,7 @@
 package Class;
 
+import Constants.IEConstants;
+
 /**
  * @author yusan
  * @version 1.0
@@ -20,7 +22,19 @@ public class IntroduceArea extends Area {
 	}
 
 	public boolean Tell_Sample(){
-		return IntroduceSensor.Get_Status();
+		float[] Sensorvalue = new float[IEConstants.SNC.sampleSize()];
+		
+		IntroduceSensor.Get_Status(Sensorvalue);
+		
+		for(int k = 0;k<IEConstants.SNC.sampleSize();k++){
+			if(Sensorvalue[k]<IEConstants.BSC){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		return false;
 	}
 
 	public void Treat_Sample(){

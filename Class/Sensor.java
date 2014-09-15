@@ -9,8 +9,6 @@ import Constants.IEConstants;
  */
 public class Sensor {
 	
-	private float value[] = new float[IEConstants.SNC.sampleSize()];
-	
 	public Sensor(){
 	}
 
@@ -18,14 +16,8 @@ public class Sensor {
 
 	}
 
-	public boolean Get_Status(){
+	public void Get_Status(float value[]){
 		IEConstants.SNC.fetchSample(value, 0);
-		
-		if((value[0]-IEConstants.BSC)>0.1){
-			return false;
-		}else{
-			return true;
-		}
 	}
 
 }
