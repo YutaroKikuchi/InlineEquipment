@@ -24,13 +24,13 @@ public class DischargeArea extends Area{
 	}
 	
 	public void setColor(String in){
-		colors[2]=colors[1];
-		colors[1]=in;
+		colors[1]=colors[0];
+		colors[0]=in;
 	}
 	
 	public void Treating(){
-		if(colors[2]!=IEConstants.UDF){
-			if(colors[2]==IEConstants.TGT){
+		if(colors[1]!=IEConstants.BLK){
+			if(colors[1]==IEConstants.TGT){
 				IEConstants.DIS.rotateTo(IEConstants.DIS_ROT);
 			}else{
 				IEConstants.DIS.rotateTo(IEConstants.DIS_ROT*-1);
