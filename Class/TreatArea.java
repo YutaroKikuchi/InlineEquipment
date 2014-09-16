@@ -44,7 +44,7 @@ public class TreatArea extends Area {
 		float colorvalue[] = new float[IEConstants.COL.sampleSize()];
 		String csvString;
 		
-		TreatingPart.TreatingUnit.Treating(colorvalue);
+		TreatingPart.Treating(colorvalue);
 		
 		if(colorvalue[0]<=200 && colorvalue[1]<=200 && colorvalue[2]<=200){
 			colorname = IEConstants.BLK;	//•‚Æ”»’è

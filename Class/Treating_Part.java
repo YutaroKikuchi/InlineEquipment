@@ -18,7 +18,8 @@ public class Treating_Part {
 
 	}
 
-	public void Treating(){
+	public void Treating(float value[]){
+		TreatingUnit.Treating(value);
 	}
 
 }
