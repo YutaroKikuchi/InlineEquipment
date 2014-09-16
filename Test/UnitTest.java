@@ -74,6 +74,10 @@ public class UnitTest {
 		}
 	}
 	
+	private static void IntroduceAreaTest(){
+		IntroduceAreaTest
+	}
+	
 	private static void log(String in){
 		System.out.println(in);
 	}
