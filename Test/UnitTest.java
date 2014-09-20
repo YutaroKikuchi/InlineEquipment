@@ -1,5 +1,7 @@
 package Test;
 
+import lejos.hardware.Button;
+import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
 import Class.Before_Equipment;
 import Class.Moving_Part;
@@ -12,7 +14,7 @@ public class UnitTest {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		TreatingUnitTest();
+		Moving_Stage();
 	}
 	
 	private static void TreatingUnitTest(){
@@ -20,15 +22,20 @@ public class UnitTest {
 		TreatingUnit aaa = new TreatingUnit();
 		float[] color = {0,0,0};
 		
-		for(int i=0;i<3;i++){
+		while(true){
 			aaa.Treating(color);
-		
-			for(i=0;i<3;i++){
-				System.out.print(color[i]);
-			}
-			System.out.print("\n");
 			
-			Delay.msDelay(3000);
+			LCD.clear();
+			
+			for(int j=0;j<3;j++){
+				LCD.drawString("color["+j+"] = "+color[j],0,j);
+			}
+			
+			LCD.refresh();
+			
+			if(Button.waitForAnyEvent()==2){
+				break;
+			}
 		}
 	}
 	
@@ -36,48 +43,53 @@ public class UnitTest {
 		float[] testValue = new float[IEConstants.SNC.sampleSize()];
 		Sensor aaa = new Sensor();
 		
-		for(int k=0;k<3;k++){
-		aaa.Get_Status(testValue);
-		
-		for(int i=0;i<IEConstants.SNC.sampleSize();i++){
-			
-			System.out.print(testValue[i]+" ");
-			Delay.msDelay(10000);
-		}
+		while(true){
+			aaa.Get_Status(testValue);
+			LCD.clear();
+			for(int i=0;i<IEConstants.SNC.sampleSize();i++){
+				LCD.drawString("value[" +i+"]= "+testValue[i], 0, i);
+			}
+			if(Button.waitForAnyPress()==32){
+				break;
+			}
 		}
 	}
 	
 	private static void Moving_Stage(){
 		Moving_Stage aaa = new Moving_Stage();
 		
-		for(int i=0;i<3;i++){
-		log("Unlock_Moving");
+		while(true){
 		aaa.Unlock_Moving();
-		log("Moving");
 		aaa.Moving();
-		log("Lock_Moving");
 		aaa.Lock_Moving();
-		log("Moving");
 		aaa.Moving();
-		Delay.msDelay(5000);
+		if(Button.waitForAnyPress()==32){
+			break;
+		}
+		aaa.Unlock_Moving();
+		aaa.Moving_After();
+		aaa.Lock_Moving();
 		}
 	}
 	
 	private static void Before_EquipmentTest(){
 		Before_Equipment aaa = new Before_Equipment();
 		
-		for(int i=0;i<3;i++){
-			log("Give_Sample");
+		while(true){
+			//log("Give_Sample");
 			aaa.Give_Sample();
 			
-			Delay.msDelay(5000);
+			if(Button.waitForAnyPress()==32){
+				break;
+			}
 		}
 	}
 	
+	/*
 	private static void IntroduceAreaTest(){
 		IntroduceAreaTest
 	}
-	
+	*/
 	private static void log(String in){
 		System.out.println(in);
 	}
