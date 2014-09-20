@@ -14,6 +14,7 @@ public class Moving_Stage {
 	public IntroduceArea IntroArea;
 	public TreatArea TreArea;
 	public DischargeArea DisArea;
+	public TreatingUnit CheckSensor;
 
 	private boolean LockMov;	//ベルトコンベアロック
 	private int angle;			//モータの現在の角度
@@ -24,16 +25,24 @@ public class Moving_Stage {
 		IntroArea = new IntroduceArea();
 		TreArea = new TreatArea();
 		DisArea = new DischargeArea();
+		CheckSensor = new TreatingUnit();
 		IEConstants.BAND.resetTachoCount();
 		IEConstants.BAND.rotateTo(0);
+		IEConstants.BAND.setSpeed(IEConstants.SPD);
 	}
 
 	public void finalize() throws Throwable {
 
 	}
 
-	public boolean Check_Sample(){
-		return false;
+	private boolean Check_Sample(){
+		float[] color=new float[IEConstants.COL.sampleSize()];
+		CheckSensor.Treating(color);
+		if(color[0]>IEConstants.BLK_LEV[0] && color[1]>IEConstants.BLK_LEV[1] && color[2]>IEConstants.BLK_LEV[2]){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	public void Lock_Moving(){
@@ -42,8 +51,19 @@ public class Moving_Stage {
 
 	public void Moving(){
 		if(LockMov==true){
-			angle += IEConstants.ROT;
-			IEConstants.BAND.setSpeed(IEConstants.SPD);
+			while(true){
+				angle += IEConstants.ROT;
+				IEConstants.BAND.rotateTo(angle);
+				if(Check_Sample()==true){
+					break;
+				}
+			}
+		}
+	}
+	
+	public void Moving_After(){
+		if(LockMov==true){
+			angle += IEConstants.ROT2;
 			IEConstants.BAND.rotateTo(angle);
 		}
 	}
