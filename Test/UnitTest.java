@@ -4,6 +4,7 @@ import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
 import Class.Before_Equipment;
+import Class.DischargeArea;
 import Class.Moving_Part;
 import Class.Moving_Stage;
 import Class.Sensor;
@@ -14,7 +15,7 @@ public class UnitTest {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Moving_Stage();
+		DischargeAreaTest();
 	}
 	
 	private static void TreatingUnitTest(){
@@ -85,6 +86,67 @@ public class UnitTest {
 		}
 	}
 	
+	private static void DischargeAreaTest(){
+		DischargeArea aaa = new DischargeArea();
+		String color=IEConstants.UDF;
+		int command=0;
+		
+		while(true){
+			command = Button.waitForAnyPress();
+			LCD.clear();
+			LCD.drawString("colors[0] = "+aaa.getColor0(), 0, 0);
+			LCD.drawString("colors[1] = "+aaa.getColor1(), 0, 1);
+			
+			switch(command){
+			case 4:
+				color=IEConstants.RED;
+				aaa.setColor(color);
+				LCD.drawString("Inserted "+IEConstants.RED, 0, 3);
+				break;
+			case 1:
+				color=IEConstants.BLUE;
+				aaa.setColor(color);
+				LCD.drawString("Inserted "+IEConstants.BLUE, 0, 3);
+				break;
+			case 16:
+				color=IEConstants.GRN;
+				aaa.setColor(color);
+				LCD.drawString("Inserted "+IEConstants.GRN, 0, 3);
+				break;
+			case 8:
+				color=IEConstants.BLK;
+				aaa.setColor(color);
+				LCD.drawString("Inserted "+IEConstants.BLK, 0, 3);
+				break;
+			case 2:
+				color=IEConstants.YLW;
+				aaa.setColor(color);
+				LCD.drawString("Inserted "+IEConstants.YLW, 0, 3);
+				break;
+			case 32:
+				color=IEConstants.UDF;
+				aaa.setColor(color);
+				LCD.drawString("Inserted "+IEConstants.UDF, 0, 3);
+				break;
+			default:
+				LCD.drawString("ERROR", 0, 3);
+				break;
+			}
+			
+			aaa.Treating();
+			
+			if(Button.waitForAnyPress()==32){
+				break;
+			}
+			
+			LCD.refresh();
+		}
+		IEConstants.DIS.rotateTo(0);
+	}
+	
+	private void TreatingAreaTest(){
+		
+	}
 	/*
 	private static void IntroduceAreaTest(){
 		IntroduceAreaTest
