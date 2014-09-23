@@ -33,18 +33,18 @@ private IEConstants(){
 	
 	public static int DIS_ROT = 22;	//排出勝利用モータを動かす角度
 	public static int DIS_SPD = 200;//排出処理用モータを動かす速度
-	public static String TGT = "赤";	//排出用する色
+	public static String TGT = "red";	//排出用する色
 
 	public static int SAM = 100;	//扱う試料の最大数
 	
 	public static String PASS = "なんか";	//処理ログを補完するディレクトリパス
 	
-	public static String RED = "赤";		//色の名前
-	public static String BLUE = "青";
-	public static String YLW = "黄";
-	public static String BLK = "黒";
-	public static String GRN = "緑";
-	public static String UDF = "不明";
+	public static String RED = "red";		//色の名前
+	public static String BLUE = "blue";
+	public static String YLW = "yellow";
+	public static String BLK = "black";
+	public static String GRN = "green";
+	public static String UDF = "unknown";
 	
 	public static String COMP = "処理完了";		//ログに示す内容
 	public static String UNCOMP = "処理未完了";
