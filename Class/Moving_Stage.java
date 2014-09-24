@@ -38,7 +38,7 @@ public class Moving_Stage {
 	private boolean Check_Sample(){
 		float[] color=new float[IEConstants.COL.sampleSize()];
 		CheckSensor.Treating(color);
-		if(color[0]>IEConstants.BLK_LEV[0] && color[1]>IEConstants.BLK_LEV[1] && color[2]>IEConstants.BLK_LEV[2]){
+		if(color[0]>0.02 && color[1]>0.02 && color[2]>0.02){
 			return true;
 		}else{
 			return false;
