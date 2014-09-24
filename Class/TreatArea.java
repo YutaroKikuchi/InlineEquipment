@@ -46,18 +46,20 @@ public class TreatArea extends Area {
 		
 		TreatingPart.TreatingUnit.Treating(colorvalue);
 		
-		if(colorvalue[0]<=200 && colorvalue[1]<=200 && colorvalue[2]<=200){
-			colorname = IEConstants.BLK;	//黒と判定
-		}else if(colorvalue[0]<=200 && colorvalue[1]<=200 && colorvalue[2]>200){
-			colorname = IEConstants.BLUE;	//青と判定
-		}else if(colorvalue[0]<=200 && colorvalue[1]>200 && colorvalue[2]<=200){
-			colorname = IEConstants.GRN;	//緑と判定
-		}else if(colorvalue[0]>200 && colorvalue[1]<=200 && colorvalue[2]<=200){
-			colorname = IEConstants.RED;	//赤と判定
-		}else if(colorvalue[0]>200 && colorvalue[1]>200 && colorvalue[2]<=200){
-			colorname = IEConstants.YLW;	//黄と判定
+		if(colorvalue[0]<0.02 &&colorvalue[1]<0.02 && colorvalue[2]<0.02){
+			colorname = IEConstants.BLK; //すべてのRGB値が0.02より小さかったら黒と判定
+		}else if(selectColor(colorvalue,0)){
+			if(colorvalue[1]>=colorvalue[2]){
+				colorname = IEConstants.YLW;	//R,G,Bの値の順に大きかったら黄と判定
+			}else{
+				colorname = IEConstants.RED;	//R,B,Gの値の順に大きかったら赤と判定
+			}
+		}else if(selectColor(colorvalue,1)){
+			colorname = IEConstants.GRN;		//Gの値が一番大きかったら緑と判定
+		}else if(selectColor(colorvalue,2)){
+			colorname = IEConstants.BLUE;		//Bの値が一番大きかったら青と判定
 		}else{
-			colorname = IEConstants.UDF;	//不明と判定
+			colorname = IEConstants.UDF;		//不明と判定
 		}
 		
 		if(colorname!=IEConstants.UDF){									//処理状況を記録 色が不明な場合は処理していないと記録
@@ -71,9 +73,10 @@ public class TreatArea extends Area {
 		}else{
 			csvString = (currentNumber+1) + "," + colorname +"," + IEConstants.UNCOMP;
 		}
-		addCSV(csvString);
+		//addCSV(csvString);
 	}
 	
+	/*
 	private void addCSV(String csvline){
 		try{
 			fw = new FileWriter(IEConstants.PASS, true); 
@@ -84,6 +87,32 @@ public class TreatArea extends Area {
 			pw.close();
 		}catch(IOException ex){
 			ex.printStackTrace();
+		}
+	}
+	*/
+	
+	private boolean selectColor(float in[],int no){
+		switch(no){
+		case 0:
+			if((in[0]>=in[1]) && (in[1]>=in[2])){
+				return true;
+			}else{
+				return false;
+			}
+		case 1:
+			if(in[1]>=in[0] && in[0]>in[2]){
+				return true;
+			}else{
+				return false;
+			}
+		case 2:
+			if(in[2]>=in[0] && in[0]>=in[1]){
+				return true;
+			}else{
+				return false;
+			}
+		default:
+			return false;
 		}
 	}
 }
