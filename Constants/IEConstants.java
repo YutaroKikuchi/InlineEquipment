@@ -46,9 +46,7 @@ private IEConstants(){
 	public static String GRN = "green";
 	public static String UDF = "unknown";
 	
-	public static String COMP = "処理完了";		//ログに示す内容
-	public static String UNCOMP = "処理未完了";
+	public static String COMP = "Complete";		//ログに示す内容
+	public static String UNCOMP = "UnComplete";
 	public static String LOG = "ID,色,処理状況\n";
-	
-	public static double[] BLK_LEV ={0.01,0.01,0.01};
 }
