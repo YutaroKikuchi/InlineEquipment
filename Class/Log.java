@@ -1,5 +1,7 @@
 package Class;
 
+import Constants.IEConstants;
+
 
 /**
  * @author yusan
@@ -13,7 +15,7 @@ public class Log {
 	public Sample Treat_Sample;
 
 	public Log(){
-		colorname="•s–¾";
+		colorname=IEConstants.UDF;
 		Take_After=false;
 	}
 
