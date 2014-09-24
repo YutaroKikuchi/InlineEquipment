@@ -11,13 +11,16 @@ public class Sample {
 	private int ID;
 	public Log Treat_Log;
 
-	public Sample(int Number){
+	public Sample(){
 		Treat_Log = new Log();
-		ID = Number;
 	}
 
 	public void finalize() throws Throwable {
 
+	}
+	
+	public void setnumber(int in){
+		ID = in;
 	}
 	
 	public int getID(){
