@@ -11,7 +11,7 @@ public class Area {
 	public Sample Area_Sample;
 
 	public Area(){
-
+		Area_Sample = new Sample();
 	}
 
 	public void finalize() throws Throwable {
