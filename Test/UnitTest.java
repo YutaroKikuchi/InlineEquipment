@@ -8,6 +8,7 @@ import Class.DischargeArea;
 import Class.Moving_Part;
 import Class.Moving_Stage;
 import Class.Sensor;
+import Class.TreatArea;
 import Class.TreatingUnit;
 import Constants.IEConstants;
 
@@ -15,7 +16,7 @@ public class UnitTest {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		DischargeAreaTest();
+		Moving_Stage();
 	}
 	
 	private static void TreatingUnitTest(){
@@ -144,8 +145,22 @@ public class UnitTest {
 		IEConstants.DIS.rotateTo(0);
 	}
 	
-	private void TreatingAreaTest(){
+	private static void TreatingAreaTest(){
+		TreatArea aaa = new TreatArea();
+		String bbb = "";
 		
+		while(true){
+			LCD.clear();
+			aaa.Treat_Sample();
+			bbb = aaa.Area_Sample.getID()+" , "+aaa.Area_Sample.Treat_Log.getColor()+" , "+aaa.Area_Sample.Treat_Log.returnTake_After();
+			
+			LCD.drawString(bbb, 0, 0);
+
+			if(Button.waitForAnyPress()==32){
+				break;
+			}
+		}
+		LCD.refresh();
 	}
 	/*
 	private static void IntroduceAreaTest(){
