@@ -45,7 +45,8 @@ public class TreatArea extends Area {
 		String csvString;
 		
 		TreatingPart.TreatingUnit.Treating(colorvalue);
-		
+		super.Area_Sample.setnumber(currentNumber+1);
+		currentNumber++;
 		if(colorvalue[0]<0.02 &&colorvalue[1]<0.02 && colorvalue[2]<0.02){
 			colorname = IEConstants.BLK; //すべてのRGB値が0.02より小さかったら黒と判定
 		}else if(selectColor(colorvalue,0)){
@@ -64,6 +65,8 @@ public class TreatArea extends Area {
 		
 		if(colorname!=IEConstants.UDF){									//処理状況を記録 色が不明な場合は処理していないと記録
 			super.Area_Sample.Treat_Log.setState(true);
+		}else{
+			super.Area_Sample.Treat_Log.setState(false);
 		}
 		
 		super.Area_Sample.Treat_Log.setColor(colorname);
@@ -94,19 +97,19 @@ public class TreatArea extends Area {
 	private boolean selectColor(float in[],int no){
 		switch(no){
 		case 0:
-			if((in[0]>=in[1]) && (in[1]>=in[2])){
+			if((in[0]>=in[1] && in[0]>=in[2])){
 				return true;
 			}else{
 				return false;
 			}
 		case 1:
-			if(in[1]>=in[0] && in[0]>in[2]){
+			if(in[1]>=in[0] && in[1]>=in[2]){
 				return true;
 			}else{
 				return false;
 			}
 		case 2:
-			if(in[2]>=in[0] && in[0]>=in[1]){
+			if(in[2]>=in[0] && in[2]>=in[1]){
 				return true;
 			}else{
 				return false;
