@@ -13,8 +13,12 @@ public class IntroduceArea extends Area {
 	public Before_Equipment BeforeEquipment;
 	public Sensor IntroduceSensor;
 
+	private float beforevalue;
+	
 	public IntroduceArea(){
-
+		IntroduceSensor = new Sensor();
+		BeforeEquipment = new Before_Equipment();
+		setBeforevalue();
 	}
 
 	public void finalize() throws Throwable {
@@ -23,11 +27,11 @@ public class IntroduceArea extends Area {
 
 	public boolean Tell_Sample(){
 		float[] Sensorvalue = new float[IEConstants.SNC.sampleSize()];
-		
+		Sensorvalue[0] = 0;
 		IntroduceSensor.Get_Status(Sensorvalue);
 		
 		for(int k = 0;k<IEConstants.SNC.sampleSize();k++){
-			if(Sensorvalue[k]<IEConstants.BSC){
+			if(Sensorvalue[k]!=beforevalue){
 				return true;
 			}else{
 				return false;
@@ -37,8 +41,12 @@ public class IntroduceArea extends Area {
 		return false;
 	}
 
-	public void Treat_Sample(){
+	public void setBeforevalue(){
+		float [] sensorvalue = new float[IEConstants.SNC.sampleSize()];
 
+		IntroduceSensor.Get_Status(sensorvalue);
+		
+		beforevalue = sensorvalue[0];
 	}
 
 }
