@@ -30,6 +30,12 @@ public class Inline_Equipment {
 			}else{
 				Moving_Part.Moving_Stage.IntroArea.BeforeEquipment.Give_Sample();
 			}
+			
+			try{
+				Operation_part.StopButton.Pushdown();
+			}catch(ArithmeticException err){
+				break;
+			}
 		}
 	}
 
@@ -38,7 +44,7 @@ public class Inline_Equipment {
 			try{
 				Operation_part.StartButton.Pushdown();
 			}catch(ArithmeticException err){
-				//‰^“]ŠJŽn
+				break;
 			}
 		}
 	}
