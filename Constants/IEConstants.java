@@ -1,6 +1,7 @@
 package Constants;
 
 import lejos.hardware.Button;
+import lejos.hardware.Key;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
@@ -49,4 +50,7 @@ private IEConstants(){
 	public static String COMP = "Complete";		//ƒƒO‚É¦‚·“à—e
 	public static String UNCOMP = "UnComplete";
 	public static String LOG = "ID,F,ˆ—ó‹µ\n";
+	
+	public static Key START = Button.ENTER;
+	public static Key STOP = Button.DOWN;
 }
