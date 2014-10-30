@@ -12,6 +12,7 @@ public class Moving_Part {
 	public Moving_Stage Moving_Stage;
 
 	public Moving_Part(){
+		Moving_Stage = new Moving_Stage();
 
 	}
 
@@ -28,11 +29,23 @@ public class Moving_Part {
 	}
 
 	public void Move(){
-
+		Moving_Stage.Unlock_Moving();
+		Moving_Stage.Moving();
+		Moving_Stage.Lock_Moving();
 	}
-
-	public void Wait(){
-
+	
+	public void Treating(){
+		Moving_Stage.TreArea.Treat_Sample();
+		Moving_Stage.DisArea.setColor(Moving_Stage.TreArea.Area_Sample.Treat_Log.getColor());
+		Moving_Stage.DisArea.Treating();
+	}
+	
+	public boolean Check_IntroduceArea(){
+		if(Moving_Stage.IntroArea.Tell_Sample()==true){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }
