@@ -1,5 +1,8 @@
 package Class;
 
+import lejos.hardware.Button;
+import Constants.IEConstants;
+
 
 /**
  * @author yusan
@@ -8,8 +11,9 @@ package Class;
  */
 public class Operation_Part {
 
-	public Operation_Button StartButton = new Operation_Button("start");
-	public Operation_Button StopButton = new Operation_Button("stop");
+	
+	public Operation_Button StartButton = new Operation_Button(IEConstants.START);
+	public Operation_Button StopButton = new Operation_Button(IEConstants.STOP);
 	
 	public Operation_Part(){
 

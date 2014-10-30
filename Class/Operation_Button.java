@@ -1,6 +1,7 @@
 package Class;
 
 import lejos.hardware.Button;
+import lejos.hardware.Key;
 
 /**
  * @author yusan
@@ -12,9 +13,10 @@ public class Operation_Button {
 	public Operation_Part Operation_Part;
 
 	String SwitchMode;
+	Key button;
 	
-	public Operation_Button(String mode){
-		SwitchMode = mode;
+	public Operation_Button(Key button){
+		this.button = button;
 	}
 
 	public void finalize() throws Throwable {
@@ -22,7 +24,7 @@ public class Operation_Button {
 	}
 
 	public void Pushdown(){
-		if((SwitchMode=="stop" && Button.DOWN.isDown()==true)||(Button.ENTER.isDown()==true && SwitchMode=="start")){
+		if(button.isDown()==true){
 			Pushdown_Event();
 		}
 	}
