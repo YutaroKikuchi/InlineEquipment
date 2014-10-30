@@ -18,7 +18,7 @@ public class UnitTest {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Moving_Stage();
+		OperationButtonTest();
 	}
 	
 	private static void TreatingUnitTest(){
@@ -207,15 +207,18 @@ public class UnitTest {
 	
 	private static void OperationButtonTest(){
 		Operation_Part aaa = new Operation_Part();
+		LCD.clear();
 		while(true){
-			LCD.clear();
 			try{
+				LCD.drawString("Push Button!", 0, 0);
 				aaa.StartButton.Pushdown();
 			}catch(ArithmeticException err){
 				LCD.drawString("Pushed Start", 0, 0);
 				break;
 			}
 		}
+		
+		Delay.msDelay(5000);
 		LCD.refresh();
 	}
 	
