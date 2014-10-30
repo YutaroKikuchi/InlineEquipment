@@ -5,8 +5,10 @@ import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
 import Class.Before_Equipment;
 import Class.DischargeArea;
+import Class.IntroduceArea;
 import Class.Moving_Part;
 import Class.Moving_Stage;
+import Class.Operation_Part;
 import Class.Sensor;
 import Class.TreatArea;
 import Class.TreatingUnit;
@@ -162,13 +164,104 @@ public class UnitTest {
 		}
 		LCD.refresh();
 	}
-	/*
-	private static void IntroduceAreaTest(){
-		IntroduceAreaTest
+	
+	private static void BeforeEquip_SensorTest(){
+		Before_Equipment aaa = new Before_Equipment();
+		Sensor bbb = new Sensor();
+		
+		float[] value = new float[10];
+		while(true){
+			LCD.clear();
+			aaa.Give_Sample();
+			bbb.Get_Status(value);
+			
+			LCD.drawString("value="+value[0], 0, 0);
+			
+			if(Button.waitForAnyPress()==32){
+				break;
+			}
+		}
+		LCD.refresh();
 	}
-	*/
-	private static void log(String in){
-		System.out.println(in);
+	
+	private static void IntroduceAreaTest(){
+		IntroduceArea aaa = new IntroduceArea();
+		Before_Equipment bbb = new Before_Equipment();
+		
+		while(true){
+			LCD.clear();
+			if(aaa.Tell_Sample()==true){
+				LCD.drawString("true", 0, 0);
+			}else{
+				LCD.drawString("false", 0, 0);
+				aaa.setBeforevalue();
+				bbb.Give_Sample();
+			}
+			
+			if(Button.waitForAnyPress()==32){
+				break;
+			}
+		}
+		LCD.refresh();
+	}
+	
+	private static void OperationButtonTest(){
+		Operation_Part aaa = new Operation_Part();
+		while(true){
+			LCD.clear();
+			try{
+				aaa.StartButton.Pushdown();
+			}catch(ArithmeticException err){
+				LCD.drawString("Pushed Start", 0, 0);
+				break;
+			}
+		}
+		LCD.refresh();
+	}
+	
+	private static void BeforeIntroTest(){
+		Before_Equipment bbb = new Before_Equipment();
+		IntroduceArea aaa = new IntroduceArea();
+		
+		while(true){
+			LCD.clear();
+			bbb.Give_Sample();
+			if(aaa.Tell_Sample()==true){
+				LCD.drawString("true", 0, 0);
+			}else{
+				LCD.drawString("false", 0, 0);
+			}
+			if(Button.waitForAnyPress()==32){
+				break;
+			}
+		}
+		LCD.refresh();
+	}
+	
+	private static void TreatDischargeTest(){
+		TreatArea aaa = new TreatArea();
+		DischargeArea bbb = new DischargeArea();
+		while(true){
+			aaa.Treat_Sample();
+			bbb.setColor(aaa.Area_Sample.Treat_Log.getColor());
+			bbb.Take_Sample();
+			
+			if(Button.waitForAnyPress()==32){
+				break;
+			}
+		}
+	}
+	
+	private static void MovingPartTest(){
+		Moving_Part aaa = new Moving_Part();
+		
+		while(true){
+			aaa.Move();
+			aaa.Treating();
+			if(Button.waitForAnyPress()==32){
+				break;
+			}
+		}
 	}
 
 }
