@@ -25,8 +25,9 @@ public class Before_Equipment {
 	}
 
 	public void Give_Sample(){
-		IEConstants.BEF.rotateTo(IEConstants.BEF_ROT);
-		IEConstants.BEF.rotateTo(0);
+		IEConstants.BEF.rotate(-40);
+		IEConstants.BEF.rotate(80);
+		IEConstants.BEF.rotate(-40);
 	}
 
 	public void Start_Giving(){
