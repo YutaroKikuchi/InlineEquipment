@@ -34,6 +34,7 @@ public class IntroduceArea extends Area {
 			if(Sensorvalue[k]!=beforevalue){
 				return true;
 			}else{
+				setBeforevalue();
 				return false;
 			}
 		}
