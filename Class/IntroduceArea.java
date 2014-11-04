@@ -14,10 +14,13 @@ public class IntroduceArea extends Area {
 	public Sensor IntroduceSensor;
 
 	private float beforevalue;
+	private float nowvalue;
+	private boolean areastate;
 	
 	public IntroduceArea(){
 		IntroduceSensor = new Sensor();
 		BeforeEquipment = new Before_Equipment();
+		areastate=false;
 		setBeforevalue();
 	}
 
@@ -29,17 +32,15 @@ public class IntroduceArea extends Area {
 		float[] Sensorvalue = new float[IEConstants.SNC.sampleSize()];
 		Sensorvalue[0] = 0;
 		IntroduceSensor.Get_Status(Sensorvalue);
+		nowvalue=Sensorvalue[0];
 		
-		for(int k = 0;k<IEConstants.SNC.sampleSize();k++){
-			if(Sensorvalue[k]!=beforevalue){
-				return true;
-			}else{
-				setBeforevalue();
-				return false;
-			}
+		if(nowvalue!=beforevalue){
+			areastate = ! areastate;
 		}
 		
-		return false;
+		beforevalue=nowvalue;
+		
+		return areastate;
 	}
 
 	public void setBeforevalue(){
