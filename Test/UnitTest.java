@@ -18,7 +18,7 @@ public class UnitTest {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		OperationButtonTest();
+		IntroduceAreaTest();
 	}
 	
 	private static void TreatingUnitTest(){
@@ -191,10 +191,13 @@ public class UnitTest {
 		while(true){
 			LCD.clear();
 			if(aaa.Tell_Sample()==true){
+				LCD.drawString("beforevalue="+aaa.getBeforevalue(), 0, 1);
+				LCD.drawString("nowvalue="+aaa.getnowvalue(), 0, 2);
 				LCD.drawString("true", 0, 0);
 			}else{
+				LCD.drawString("beforevalue="+aaa.getBeforevalue(), 0, 1);
+				LCD.drawString("nowvalue="+aaa.getnowvalue(), 0, 2);
 				LCD.drawString("false", 0, 0);
-				aaa.setBeforevalue();
 				bbb.Give_Sample();
 			}
 			
