@@ -24,7 +24,7 @@ private IEConstants(){
 	public static SensorMode SNC = SonicSensor.getMode(0);	//超音波センサモード
 	
 	public static int ROT = 10;		//ベルトコンベア用モータを動かす角度
-	public static int ROT2 = 90;
+	public static int ROT2 = 150;
 	public static int SPD = 200;	//ベルトコンベア用モータを動かす速度
 	
 	public static float BSC = (float) 0.1;	//超音波センサ用基準値
@@ -32,7 +32,7 @@ private IEConstants(){
 	public static int BEF_ROT = -80;	//前処理装置用モータを動かす角度
 	public static int BEF_SPD = 100;//前処理装置用モータを動かす速度
 	
-	public static int DIS_ROT = 22;	//排出勝利用モータを動かす角度
+	public static int DIS_ROT = 20;	//排出勝利用モータを動かす角度
 	public static int DIS_SPD = 200;//排出処理用モータを動かす速度
 	public static String TGT = "red";	//排出用する色
 
