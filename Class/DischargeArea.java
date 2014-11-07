@@ -10,8 +10,6 @@ import Constants.IEConstants;
 public class DischargeArea extends Area{
 
 	public Moving_Stage Moving_Stage;
-
-	String[] colors = {IEConstants.UDF,IEConstants.UDF};
 	
 	public DischargeArea(){
 		IEConstants.DIS.resetTachoCount();
@@ -24,27 +22,19 @@ public class DischargeArea extends Area{
 	}
 	
 	public void setColor(String in){
-		colors[1]=colors[0];
-		colors[0]=in;
+		super.Area_Sample.Treat_Log.setColor(in);
 	}
 	
 	public void Treating(){
-		if(colors[1]!=IEConstants.UDF){
-			if(colors[1]==IEConstants.TGT){
+		String currentcolor = super.Area_Sample.Treat_Log.getColor();
+		if(currentcolor!=IEConstants.UDF){
+			if(currentcolor==IEConstants.TGT){
 				IEConstants.DIS.rotateTo(IEConstants.DIS_ROT);
 			}else{
 				IEConstants.DIS.rotateTo(IEConstants.DIS_ROT*-1);
 			}
 		}else{
-			IEConstants.DIS.rotateTo(0);
+				IEConstants.DIS.rotateTo(0);
 		}
-	}
-	
-	public String getColor0(){
-		return colors[0];
-	}
-	
-	public String getColor1(){
-		return colors[1];
 	}
 }

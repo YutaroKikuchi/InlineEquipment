@@ -18,10 +18,10 @@ public class UnitTest {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		IntroduceAreaTest();
+		TreatingUnitTest();
 	}
 	
-	private static void TreatingUnitTest(){
+	private static void TreatingUnitTest(){	//カラーセンサからのRGB値を取得します
 		
 		TreatingUnit aaa = new TreatingUnit();
 		float[] color = {0,0,0};
@@ -43,7 +43,7 @@ public class UnitTest {
 		}
 	}
 	
-	private static void SensorTest(){
+	private static void SensorTest(){	//超音波センサから取得した値を表示します
 		float[] testValue = new float[IEConstants.SNC.sampleSize()];
 		Sensor aaa = new Sensor();
 		
@@ -97,8 +97,7 @@ public class UnitTest {
 		while(true){
 			command = Button.waitForAnyPress();
 			LCD.clear();
-			LCD.drawString("colors[0] = "+aaa.getColor0(), 0, 0);
-			LCD.drawString("colors[1] = "+aaa.getColor1(), 0, 1);
+			LCD.drawString("currentcolor="+aaa.Area_Sample.Treat_Log.getColor(), 0, 0);
 			
 			switch(command){
 			case 4:
@@ -191,12 +190,8 @@ public class UnitTest {
 		while(true){
 			LCD.clear();
 			if(aaa.Tell_Sample()==true){
-				LCD.drawString("beforevalue="+aaa.getBeforevalue(), 0, 1);
-				LCD.drawString("nowvalue="+aaa.getnowvalue(), 0, 2);
 				LCD.drawString("true", 0, 0);
 			}else{
-				LCD.drawString("beforevalue="+aaa.getBeforevalue(), 0, 1);
-				LCD.drawString("nowvalue="+aaa.getnowvalue(), 0, 2);
 				LCD.drawString("false", 0, 0);
 				bbb.Give_Sample();
 			}
@@ -249,12 +244,17 @@ public class UnitTest {
 		DischargeArea bbb = new DischargeArea();
 		while(true){
 			aaa.Treat_Sample();
+			Button.waitForAnyEvent();
 			bbb.setColor(aaa.Area_Sample.Treat_Log.getColor());
-			bbb.Take_Sample();
+			bbb.Treating();
+			
+			LCD.drawString("TreatArea="+aaa.Area_Sample.Treat_Log.getColor(), 0, 0);
+			LCD.drawString("DischargeArea="+bbb.Area_Sample.Treat_Log.getColor(), 0, 1);
 			
 			if(Button.waitForAnyPress()==32){
 				break;
 			}
+			LCD.clear();
 		}
 	}
 	
@@ -267,7 +267,10 @@ public class UnitTest {
 			if(Button.waitForAnyPress()==32){
 				break;
 			}
+			aaa.MoveLittle();
 		}
+		
+		IEConstants.DIS.rotateTo(0);
 	}
 
 }
