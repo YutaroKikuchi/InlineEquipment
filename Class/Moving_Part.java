@@ -34,6 +34,12 @@ public class Moving_Part {
 		Moving_Stage.Lock_Moving();
 	}
 	
+	public void MoveLittle(){
+		Moving_Stage.Unlock_Moving();
+		Moving_Stage.Moving_After();
+		Moving_Stage.Lock_Moving();
+	}
+	
 	public void Treating(){
 		Moving_Stage.TreArea.Treat_Sample();
 		Moving_Stage.DisArea.setColor(Moving_Stage.TreArea.Area_Sample.Treat_Log.getColor());
