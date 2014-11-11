@@ -1,5 +1,7 @@
 package Class;
 
+import Constants.IEConstants;
+
 
 /**
  * @author yusan
@@ -24,6 +26,12 @@ public class Area {
 
 	public void Take_Sample(){
 
+	}
+	
+	public void Init(){
+		Area_Sample.setnumber(0);
+		Area_Sample.Treat_Log.setState(false);
+		Area_Sample.Treat_Log.setColor(IEConstants.UDF);
 	}
 
 }
