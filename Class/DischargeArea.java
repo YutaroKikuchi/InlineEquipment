@@ -11,10 +11,13 @@ public class DischargeArea extends Area{
 
 	public Moving_Stage Moving_Stage;
 	
+	String precolor;
+	
 	public DischargeArea(){
 		IEConstants.DIS.resetTachoCount();
 		IEConstants.DIS.rotateTo(0);
 		IEConstants.DIS.setSpeed(IEConstants.DIS_SPD);
+		precolor = IEConstants.UDF;
 	}
 
 	public void finalize() throws Throwable {
@@ -22,7 +25,8 @@ public class DischargeArea extends Area{
 	}
 	
 	public void setColor(String in){
-		super.Area_Sample.Treat_Log.setColor(in);
+		super.Area_Sample.Treat_Log.setColor(precolor);
+		precolor = in;
 	}
 	
 	public void Treating(){
