@@ -52,6 +52,9 @@ public class TreatArea extends Area {
 		}else if(selectColor(colorvalue,0)){
 			if(colorvalue[1]>=colorvalue[2]){
 				colorname = IEConstants.YLW;	//R,G,B‚Ì’l‚Ì‡‚É‘å‚«‚©‚Á‚½‚ç‰©‚Æ”»’è
+				if(colorvalue[1]<0.02){
+					colorname = IEConstants.RED;
+				}
 			}else{
 				colorname = IEConstants.RED;	//R,B,G‚Ì’l‚Ì‡‚É‘å‚«‚©‚Á‚½‚çÔ‚Æ”»’è
 			}
