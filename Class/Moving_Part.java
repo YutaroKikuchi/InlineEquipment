@@ -1,5 +1,7 @@
 package Class;
 
+import Constants.IEConstants;
+
 
 /**
  * @author yusan
@@ -8,7 +10,6 @@ package Class;
  */
 public class Moving_Part {
 
-	private boolean Stop_Reserve = false;
 	public Moving_Stage Moving_Stage;
 
 	public Moving_Part(){
@@ -21,7 +22,11 @@ public class Moving_Part {
 	}
 
 	public void Action_Stop_Complete(){
-
+		IEConstants.DIS.rotateTo(0);
+		IEConstants.BEF.rotateTo(0);
+		Moving_Stage.IntroArea.Init();
+		Moving_Stage.TreArea.Init();
+		Moving_Stage.DisArea.Init();
 	}
 
 	public boolean Check_Action(){
