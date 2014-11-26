@@ -43,7 +43,7 @@ public class IntroduceArea extends Area {
 		return areastate;
 	}
 
-	public void setBeforevalue(){
+	private void setBeforevalue(){
 		float [] sensorvalue = new float[IEConstants.SNC.sampleSize()];
 
 		IntroduceSensor.Get_Status(sensorvalue);
