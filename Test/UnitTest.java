@@ -8,6 +8,7 @@ import Class.DischargeArea;
 import Class.IntroduceArea;
 import Class.Moving_Part;
 import Class.Moving_Stage;
+import Class.Operation_Button.ButtonException;
 import Class.Operation_Part;
 import Class.Sensor;
 import Class.TreatArea;
@@ -18,7 +19,7 @@ public class UnitTest {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		TreatingUnitTest();
+		Moving_StageTest();
 	}
 	
 	private static void TreatingUnitTest(){	//カラーセンサからのRGB値を取得します
@@ -59,7 +60,7 @@ public class UnitTest {
 		}
 	}
 	
-	private static void Moving_Stage(){
+	private static void Moving_StageTest(){
 		Moving_Stage aaa = new Moving_Stage();
 		
 		while(true){
@@ -149,13 +150,17 @@ public class UnitTest {
 	private static void TreatingAreaTest(){
 		TreatArea aaa = new TreatArea();
 		String bbb = "";
+		float[] colorvalue = new float[3];
 		
 		while(true){
 			LCD.clear();
 			aaa.Treat_Sample();
 			bbb = aaa.Area_Sample.getID()+" , "+aaa.Area_Sample.Treat_Log.getColor()+" , "+aaa.Area_Sample.Treat_Log.returnTake_After();
-			
+			aaa.TreatingPart.TreatingUnit.Treating(colorvalue);
 			LCD.drawString(bbb, 0, 0);
+			for(int i=0;i<3;i++){
+				LCD.drawString("color["+i+"]="+colorvalue[i], 0, i+1);
+			}
 
 			if(Button.waitForAnyPress()==32){
 				break;
@@ -205,19 +210,36 @@ public class UnitTest {
 	
 	private static void OperationButtonTest(){
 		Operation_Part aaa = new Operation_Part();
+		int bbb=0; 
 		LCD.clear();
-		while(true){
-			try{
-				LCD.drawString("Push Button!", 0, 0);
-				aaa.StartButton.Pushdown();
-			}catch(ArithmeticException err){
-				LCD.drawString("Pushed Start", 0, 0);
-				break;
+		for(int i=0;i<6;i++){
+			aaa.StartButton.start();
+			aaa.OffButton.start();
+			while(true){
+				try{
+					Delay.msDelay(500);
+					LCD.drawString(aaa.StartButton.getName(), 0, 0);
+					LCD.drawString(aaa.OffButton.getName(), 0, 1);
+					if(aaa.StartButton.getbuttonflag()==true){
+						throw aaa.StartButton.new ButtonException("Pressed Enter Button");
+					}else if(aaa.OffButton.getbuttonflag()==true){
+						throw aaa.OffButton.new ButtonException("Pressed Off Button");
+					}
+				}catch(ButtonException e){
+					LCD.clear();
+					LCD.drawString(e.getMessage(), 0, 0);
+					break;
+				}
 			}
+			
+			Delay.msDelay(1000);
+			Button.waitForAnyEvent();
+			aaa.StopThread(IEConstants.START);
+			aaa.StopThread(IEConstants.OFF);
+			aaa.SetButton(IEConstants.START);
+			aaa.SetButton(IEConstants.OFF);
+			LCD.clear();
 		}
-		
-		Delay.msDelay(5000);
-		LCD.refresh();
 	}
 	
 	private static void BeforeIntroTest(){
